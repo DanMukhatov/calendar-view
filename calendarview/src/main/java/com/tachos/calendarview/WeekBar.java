@@ -16,6 +16,7 @@
 package com.tachos.calendarview;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -32,7 +33,7 @@ public class WeekBar extends LinearLayout {
 
     public WeekBar(Context context) {
         super(context);
-        if ("com.haibin.calendarview.WeekBar".equals(getClass().getName())) {
+        if ("com.tachos.calendarview.WeekBar".equals(getClass().getName())) {
             LayoutInflater.from(context).inflate(R.layout.cv_week_bar, this, true);
         }
     }
@@ -44,9 +45,9 @@ public class WeekBar extends LinearLayout {
      */
     void setup(CalendarViewDelegate delegate) {
         this.mDelegate = delegate;
-        if ("com.haibin.calendarview.WeekBar".equalsIgnoreCase(getClass().getName())) {
+        if ("com.tachos.calendarview.WeekBar".equalsIgnoreCase(getClass().getName())) {
             setTextSize(mDelegate.getWeekTextSize());
-            setTextColor(delegate.getWeekTextColor());
+            setTextColorWithoutSun(delegate.getWeekTextColor());
             setBackgroundColor(delegate.getWeekBackground());
             setPadding(delegate.getCalendarPadding(), 0, delegate.getCalendarPadding(), 0);
         }
@@ -64,6 +65,17 @@ public class WeekBar extends LinearLayout {
         }
     }
 
+    protected void setTextColorWithoutSun(int color) {
+        for (int i = 0; i < getChildCount() - 1; i++) {
+            ((TextView) getChildAt(i)).setTextColor(color);
+        }
+    }
+
+    protected void setTypefaceBold() {
+        for (int i = 0; i < getChildCount(); i++) {
+            ((TextView) getChildAt(i)).setTypeface(((TextView) getChildAt(i)).getTypeface(), Typeface.BOLD);
+        }
+    }
 
     /**
      * 设置文本大小
@@ -93,7 +105,7 @@ public class WeekBar extends LinearLayout {
      * @param weekStart 周起始
      */
     protected void onWeekStartChange(int weekStart) {
-        if (!"com.haibin.calendarview.WeekBar".equalsIgnoreCase(getClass().getName())) {
+        if (!"com.tachos.calendarview.WeekBar".equalsIgnoreCase(getClass().getName())) {
             return;
         }
         for (int i = 0; i < getChildCount(); i++) {

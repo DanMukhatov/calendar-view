@@ -1342,9 +1342,17 @@ public class CalendarView extends FrameLayout {
      * @param weekBackground 背景色
      * @param weekTextColor  字体颜色
      */
-    public void setWeeColor(int weekBackground, int weekTextColor) {
+    public void setWeekColor(int weekBackground, int weekTextColor) {
         mWeekBar.setBackgroundColor(weekBackground);
         mWeekBar.setTextColor(weekTextColor);
+    }
+
+    public void setTextColorWithoutSun(int weekTextColor) {
+        mWeekBar.setTextColorWithoutSun(weekTextColor);
+    }
+
+    protected void setTypefaceBold() {
+        mWeekBar.setTypefaceBold();
     }
 
     /**
