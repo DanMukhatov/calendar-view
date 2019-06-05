@@ -1351,7 +1351,7 @@ public class CalendarView extends FrameLayout {
         mWeekBar.setTextColorWithoutSun(weekTextColor);
     }
 
-    protected void setTypefaceBold() {
+    public void setTypefaceBold() {
         mWeekBar.setTypefaceBold();
     }
 
